@@ -72,7 +72,7 @@
         status.textContent = "Login successful. Sending confirmation email...";
 
         // Call your deployed Google Apps Script
-        fetch("https://script.google.com/macros/s/AKfycbyvv7N_-1vfsb_j7LSi5s4yWCx2sPnHAKnrWPM-76s1gYGHyz3SnuOA3yIClnHuIPEqKA/exec")
+        fetch("https://script.google.com/macros/s/AKfycbzYY-yaqlkK_5Zl_AK5RfxDNd2g_oVbTA5VLfNwj8Iws6zzDLQM9KIYOg72LLl44D9dqg/exec")
           .then(res => res.text())
           .then(data => {
             status.textContent = "Confirmation email sent. Please check your inbox.";
