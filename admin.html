@@ -23,13 +23,23 @@
   </style>
 </head>
 <body>
-  <script>
+<script>
+  async function checkAuth() {
     const params = new URLSearchParams(window.location.search);
-    if (params.get("auth") !== "true") {
-      alert("Unauthorized access. Please log in first.");
+    const auth = params.get("auth");
+
+    // Ask Apps Script for the current valid token
+    const response = await fetch("https://script.google.com/macros/s/AKfycbyi8asG95HYAy_QGQzYUXOJBmM4SZwBdK6I0-AohA5w6nbwFbccY5YcAphvY6yfot3_oA/exec");
+    const lastToken = await response.text();
+
+    if (lastToken === "EXPIRED" || auth !== lastToken) {
+      alert("Session expired or unauthorized. Please log in again.");
       window.location.href = "index.html";
     }
-  </script>
+  }
+
+  window.onload = checkAuth;
+</script>
 
 <header>
   <h1>Outreach Secondary School – Admin Panel</h1>
